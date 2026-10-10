@@ -1,4 +1,4 @@
-package com.handoffhub.task;
+﻿package com.handoffhub.task;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://handoffhub-ivory.vercel.app"})
 public class TaskController {
     private final TaskRepository repository;
 

@@ -1,0 +1,25 @@
+# Render deployment - auto-creates PostgreSQL + web service
+# https://render.com/docs/render-yaml-spec
+
+services:
+  - type: web
+    name: handoffhub-api
+    runtime: java
+    region: oregon
+    plan: free
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/handoffhub-api-1.0.0.jar
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: handoffhub-db
+          property: connectionString
+      - key: JAVA_VERSION
+        value: 21
+
+databases:
+  - name: handoffhub-db
+    databaseName: handoffhub
+    user: handoffhub
+    region: oregon
+    plan: free
